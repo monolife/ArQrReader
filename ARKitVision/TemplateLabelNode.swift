@@ -1,0 +1,40 @@
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+Instantiates styled label nodes based on a template node in a scene file.
+*/
+
+import SpriteKit
+
+/// - Tag: TemplateLabelNode
+class TemplateLabelNode: SKReferenceNode {
+    
+    private let text: String
+    
+    init(text: String) {
+        self.text = text
+        // Force call to designated init(fileNamed: String?), not convenience init(fileNamed: String)
+        super.init(fileNamed: Optional.some("LabelScene"))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func didLoad(_ node: SKNode?) {
+        // Apply text to both labels loaded from the template.
+        guard let parent = node?.childNode(withName: "LabelNode") else {
+            fatalError("misconfigured SpriteKit template file")
+        }
+        for case let label as SKLabelNode in parent.children {
+            label.numberOfLines = 6
+            label.preferredMaxLayoutWidth = 1000
+            label.name = text
+            label.text = text
+            label.fontSize = 20.0
+//            label.zPosition = 1
+            label.position = CGPoint(x:0, y:-label.frame.size.height/2);
+        }
+    }
+}
