@@ -9,6 +9,7 @@ import UIKit
 import SpriteKit
 import ARKit
 import Vision
+import WebKit
 
 class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSKViewDelegate, ARSessionDelegate {
     
@@ -178,7 +179,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSKViewDel
             
             // Track anchor ID to associate text with the anchor after ARKit creates a corresponding SKNode.
             anchorLabels[anchor.identifier] = identifierString
+            
         }
+        
     }
     
     // When an anchor is added, provide a SpriteKit node for it and set its text to the classification label.
@@ -189,15 +192,17 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSKViewDel
         }
         
 //        let background = SKSpriteNode(color: UIColor.red, size: CGSize(width: CGFloat(0.3), height:CGFloat(0.3)))
-        let background = SKSpriteNode(color: UIColor.red, size: CGSize(width: 0, height: 0))
-
-        background.position = node.position;//CGPoint(x: CGFloat(200), y: CGFloat(100))
-        background.zPosition = 1
+//        let background = SKSpriteNode(color: UIColor.red, size: CGSize(width: 0, height: 0))
+//
+//        background.position = node.position;//CGPoint(x: CGFloat(200), y: CGFloat(100))
+//        background.zPosition = 1
+//        node.addChild(background)
         
-        node.addChild(background)
         let label = TemplateLabelNode(text: labelText)
-        background.addChild(label);
-        background.size = CGSize(width: CGFloat(label.frame.size.width), height:CGFloat(label.frame.size.height))
+        node.addChild(label)
+//        background.addChild(label);
+//        background.size = CGSize(width: CGFloat(label.frame.size.width), height:CGFloat(label.frame.size.height))
+        
     }
     
     // MARK: - AR Session Handling

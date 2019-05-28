@@ -33,6 +33,7 @@ class TemplateLabelNode: SKReferenceNode {
             label.name = text
             label.text = text
             label.fontSize = 20.0
+            label.fontColor = UIColor.black
 //            label.zPosition = 1
             label.position = CGPoint(x:0, y:-label.frame.size.height/2);
         }
